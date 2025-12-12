@@ -1,73 +1,163 @@
-# Welcome to your Lovable project
+# AI Startup Idea Validator
 
-## Project info
+A full-stack web application that helps entrepreneurs validate their startup ideas using AI-powered analysis. Submit your startup concept and receive comprehensive insights including market analysis, competitor assessment, technology recommendations, and profitability scoring.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Features
 
-## How can I edit this code?
+- **Idea Submission** - Submit startup ideas with title and detailed description
+- **AI-Powered Analysis** - Get comprehensive analysis powered by GPT including:
+  - Problem identification
+  - Target customer profiling
+  - Market opportunity assessment
+  - Competitor analysis (3 key competitors with differentiation)
+  - Recommended tech stack (4-6 technologies)
+  - Risk level assessment (Low/Medium/High)
+  - Profitability score (0-100)
+  - Strategic justification
+- **Ideas Dashboard** - View all submitted ideas with status indicators
+- **Real-time Updates** - Live updates when AI analysis completes
+- **Edit & Delete** - Modify ideas or remove them with PIN protection
+- **Secure Deletion** - 6-digit PIN verification required for deletions
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+### Frontend
+- **React 18** - Modern UI library with hooks
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first styling
+- **shadcn/ui** - Beautiful, accessible components
+- **React Router** - Client-side routing
+- **TanStack Query** - Server state management
+- **Lucide React** - Icon library
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Backend
+- **Supabase** - Backend-as-a-Service platform
+- **PostgreSQL** - Relational database
+- **Edge Functions** - Serverless API endpoints (Deno runtime)
+- **Real-time Subscriptions** - Live data updates
 
-Changes made via Lovable will be committed automatically to this repo.
+### AI Integration
+- **OpenAI GPT** - AI analysis via gateway API
+- **Structured JSON Output** - Consistent analysis format
 
-**Use your preferred IDE**
+## 📁 Project Structure
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```
+├── src/
+│   ├── components/
+│   │   ├── ui/              # shadcn/ui components
+│   │   ├── AIReport.tsx     # AI analysis display
+│   │   ├── EditIdeaDialog.tsx
+│   │   ├── Header.tsx
+│   │   ├── IdeaCard.tsx
+│   │   ├── IdeaForm.tsx
+│   │   ├── NavLink.tsx
+│   │   └── PinDialog.tsx
+│   ├── pages/
+│   │   ├── Index.tsx        # Home page with submission form
+│   │   ├── IdeasDashboard.tsx
+│   │   ├── IdeaDetails.tsx
+│   │   └── NotFound.tsx
+│   ├── hooks/               # Custom React hooks
+│   ├── lib/                 # Utilities
+│   └── integrations/        # Supabase client
+├── supabase/
+│   ├── functions/
+│   │   └── analyze-idea/    # AI analysis edge function
+│   └── migrations/          # Database schema
+└── public/                  # Static assets
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🗄️ Database Schema
 
-Follow these steps:
+### Ideas Table
+| Column | Type | Description |
+|--------|------|-------------|
+| id | UUID | Primary key |
+| title | TEXT | Idea title |
+| description | TEXT | Detailed description |
+| status | TEXT | pending/analyzing/completed |
+| ai_report | JSONB | AI analysis results |
+| created_at | TIMESTAMP | Creation timestamp |
+| updated_at | TIMESTAMP | Last update timestamp |
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🔧 Environment Variables
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_PUBLISHABLE_KEY=your_anon_key
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 📦 Installation
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd ai-startup-validator
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Set up environment variables
+```bash
+cp .env.example .env
+# Edit .env with your credentials
+```
+
+4. Start development server
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🎯 How It Works
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **Submit an Idea** - Enter your startup title and description on the home page
+2. **AI Analysis** - The system sends your idea to GPT for comprehensive analysis
+3. **View Results** - Navigate to the dashboard to see all ideas and their analysis status
+4. **Explore Details** - Click on any idea to view the full AI-generated report
+5. **Manage Ideas** - Edit idea details or delete with PIN verification (764581)
 
-**Use GitHub Codespaces**
+## 🔒 Security Features
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- PIN-protected deletion (6-digit verification)
+- Row Level Security (RLS) on database tables
+- Secure API key handling via environment variables
 
-## What technologies are used for this project?
+## 📊 AI Analysis Output Format
 
-This project is built with:
+```json
+{
+  "problem": "Problem statement the startup solves",
+  "customer": "Target customer profile",
+  "market": "Market opportunity analysis",
+  "competitor": [
+    "Competitor 1 - differentiation",
+    "Competitor 2 - differentiation",
+    "Competitor 3 - differentiation"
+  ],
+  "tech_stack": ["React", "Node.js", "PostgreSQL", "AWS"],
+  "risk_level": "Medium",
+  "profitability_score": 75,
+  "justification": "Strategic reasoning for the assessment"
+}
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🚀 Deployment
 
-## How can I deploy this project?
+The application can be deployed to any static hosting platform:
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- Build: `npm run build`
+- Output: `dist/` directory
+- Edge functions deploy automatically with Supabase
 
-## Can I connect a custom domain to my Lovable project?
+## 📝 License
 
-Yes, you can!
+MIT License - feel free to use this project for your own purposes.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🤝 Contributing
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Contributions are welcome! Please feel free to submit a Pull Request.
