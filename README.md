@@ -153,6 +153,7 @@ The application can be deployed to any static hosting platform:
 - Build: `npm run build`
 - Output: `dist/` directory
 - Edge functions deploy automatically with Supabase
+- Live Link : https://ai-idea-check.vercel.app/
 
 ## 📝 License
 
